@@ -1,0 +1,44 @@
+version: '2'
+
+services:
+  spamscope:
+    image: fmantuano/spamscope
+    container_name: spamscope
+    dns:
+        - 8.8.8.8
+        - 8.8.4.4
+    ports:
+        - "8080:8080"
+        - "8000:8000"
+    volumes:
+        # Mails folder
+        - /mnt/testing/spamscope:/mnt/mails
+
+        # SpamScope configuration
+        - /home/fedelemantuano/Development/Docker/spamscope-dockerfile/conf:/etc/spamscope
+        
+        # SpamScope topologies
+        - /home/fedelemantuano/Development/Docker/spamscope-dockerfile/topologies:/opt/spamscope/topologies
+    depends_on:
+        - elasticsearch
+
+  elasticsearch:
+    image: elasticsearch
+    container_name: elasticsearch
+    command: -Des.node.name="SpamScope"
+    dns:
+        - 8.8.8.8
+        - 8.8.4.4
+    ports:
+        - "9200:9200"
+
+  kibana:
+    image: kibana
+    container_name: kibana
+    dns:
+        - 8.8.8.8
+        - 8.8.4.4
+    ports:
+        - "5601:5601"
+    depends_on:
+        - elasticsearch
