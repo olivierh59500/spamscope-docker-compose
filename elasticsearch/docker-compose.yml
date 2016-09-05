@@ -1,6 +1,8 @@
 version: '2'
 
 services:
+  
+  # SpamScope
   spamscope:
     image: fmantuano/spamscope
     container_name: spamscope
@@ -22,16 +24,18 @@ services:
     depends_on:
         - elasticsearch
 
+  # Elasticsearch
   elasticsearch:
     image: elasticsearch
     container_name: elasticsearch
-    command: -Des.node.name="SpamScope"
+    #command: -Des.node.name="SpamScope"
     dns:
         - 8.8.8.8
         - 8.8.4.4
-    ports:
-        - "9200:9200"
-
+    volumes:
+        - ./conf:/usr/share/elasticsearch/config
+  
+  # Kibana
   kibana:
     image: kibana
     container_name: kibana
