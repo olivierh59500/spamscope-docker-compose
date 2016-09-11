@@ -21,10 +21,10 @@ NR_WORKERS=1
 TICK=60
 
 # max tuple pending
-MAX_PENDING=100
+MAX_PENDING=1000
 
 # Milliseconds sleep
-SPOUT_SLEEP=10
+SPOUT_SLEEP=1
 
 # Copy on SpamScope topology path
 cp -af ${TOPOLOGY}.clj ${TOPOLOGY_PATH}
