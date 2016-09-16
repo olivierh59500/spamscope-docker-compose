@@ -28,7 +28,7 @@
           {"tokenizer-bolt" ["sha256_random"]}
           "bolts.attachments.Attachments"
           ["sha256_random", "with_attachments", "attachments_json"]
-          :p 4
+          :p 2
           :conf {
                  "bolts.conf", "/etc/spamscope/components/bolts.yml",
                  }
@@ -87,7 +87,7 @@
            }
           "bolts.json_maker.JsonMaker"
           ["sha256_random", "mail"]
-          :p 2
+          :p 1
           )
     ;"output-redis-bolt" (python-bolt-spec
           ;options
@@ -104,7 +104,7 @@
           {"json-bolt" :shuffle}
           "bolts.output_elasticsearch.OutputElasticsearch"
           []
-          :p 2
+          :p 1
           :conf {
                  "bolts.conf", "/etc/spamscope/components/bolts.yml",
                  }
