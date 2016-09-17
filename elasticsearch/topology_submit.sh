@@ -21,7 +21,7 @@ NR_WORKERS=1
 TICK=60
 
 # max tuple pending
-MAX_PENDING=400
+MAX_PENDING=250
 
 # Milliseconds sleep
 SPOUT_SLEEP=10
