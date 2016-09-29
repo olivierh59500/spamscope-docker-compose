@@ -18,9 +18,6 @@ services:
 
         # SpamScope configuration
         - /home/fedelemantuano/Development/Docker/spamscope-dockerfile/conf:/etc/spamscope
-        
-        # SpamScope topologies
-        - /home/fedelemantuano/Development/Docker/spamscope-dockerfile/topologies:/opt/spamscope/topologies
     depends_on:
         - elasticsearch
 
@@ -28,7 +25,6 @@ services:
   elasticsearch:
     image: elasticsearch
     container_name: elasticsearch
-    #command: -Des.node.name="SpamScope"
     dns:
         - 8.8.8.8
         - 8.8.4.4
