@@ -1,18 +1,16 @@
 #!/bin/sh
 
 # Complete command example
-#docker exec -d spamscope sparse submit -f -w 1 -o "topology.tick.tuple.freq.secs=60" -o "topology.max.spout.pending=100" -o "topology.sleep.spout.wait.strategy.time.ms=10"
+# docker exec -d spamscope sparse submit -f -w 1 -n spamscope_elasticsearch -o "topology.tick.tuple.freq.secs=60" -o "topology.max.spout.pending=100" -o "topology.sleep.spout.wait.strategy.time.ms=10" -o "spamscope_conf=/etc/spamscope/spamscope.yml"
 
 # Example run
-# $ ./topology_submit.sh spamscope-elasticsearch ../../spamscope-dockerfile/topologies/
+# $ ./topology_submit.sh spamscope_elasticsearch
 
 CONTAINER=spamscope
+SPAMSCOPE_CONF="/etc/spamscope/spamscope.yml"
 
 # topology name
 TOPOLOGY=$1
-
-# SpamScope topology path
-TOPOLOGY_PATH=$2
 
 # workers number
 NR_WORKERS=1
@@ -26,10 +24,7 @@ MAX_PENDING=250
 # Milliseconds sleep
 SPOUT_SLEEP=10
 
-# Copy on SpamScope topology path
-cp -af ${TOPOLOGY}.clj ${TOPOLOGY_PATH}
-
 DOCKER_CMD="docker exec -d ${CONTAINER}"
-STREAMPARSE_CMD="sparse submit -f -n ${TOPOLOGY} -w ${NR_WORKERS} -o topology.tick.tuple.freq.secs=${TICK} -o topology.max.spout.pending=${MAX_PENDING} -o topology.sleep.spout.wait.strategy.time.ms=${SPOUT_SLEEP}"
+STREAMPARSE_CMD="sparse submit -f -n ${TOPOLOGY} -w ${NR_WORKERS} -o topology.tick.tuple.freq.secs=${TICK} -o topology.max.spout.pending=${MAX_PENDING} -o topology.sleep.spout.wait.strategy.time.ms=${SPOUT_SLEEP} -o spamscope_conf=${SPAMSCOPE_CONF}"
 
 ${DOCKER_CMD} ${STREAMPARSE_CMD}
