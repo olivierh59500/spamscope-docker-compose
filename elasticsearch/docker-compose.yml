@@ -30,6 +30,9 @@ services:
         - 8.8.4.4
     volumes:
         - ./conf:/usr/share/elasticsearch/config
+
+        #  Use that path if you would like to keep the data in a mounted volume
+        #- /var/lib/elasticsearch:/usr/share/elasticsearch/data
   
   # Kibana
   kibana:
