@@ -4,7 +4,7 @@ services:
   
   # SpamScope
   spamscope:
-    image: fmantuano/spamscope
+    image: fmantuano/spamscope:develop
     container_name: spamscope
     dns:
         - 8.8.8.8

@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Complete command example
-# docker exec -d spamscope sparse submit -f -w 1 -n spamscope_elasticsearch -o "topology.tick.tuple.freq.secs=60" -o "topology.max.spout.pending=100" -o "topology.sleep.spout.wait.strategy.time.ms=10" -o "spamscope_conf=/etc/spamscope/spamscope.yml"
+# docker exec -d spamscope sparse submit -f -w 1 -n spamscope_elasticsearch -o "topology.tick.tuple.freq.secs=60" -o "topology.max.spout.pending=250" -o "topology.sleep.spout.wait.strategy.time.ms=10" -o "spamscope_conf=/etc/spamscope/spamscope.yml"
 
 # Example run
 # $ ./topology_submit.sh spamscope_elasticsearch
