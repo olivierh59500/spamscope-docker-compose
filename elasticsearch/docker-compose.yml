@@ -4,20 +4,19 @@ services:
   
   # SpamScope
   spamscope:
-    image: fmantuano/spamscope:develop
+    image: fmantuano/spamscope-elasticsearch
     container_name: spamscope
     dns:
         - 8.8.8.8
         - 8.8.4.4
     ports:
         - "8080:8080"
-        - "8000:8000"
     volumes:
         # Mails folder
         - /mnt/testing/spamscope:/mnt/mails
 
         # SpamScope configuration
-        - /home/fedelemantuano/Development/Docker/spamscope-dockerfile/conf:/etc/spamscope
+        - ../spamscope_conf:/etc/spamscope
     depends_on:
         - elasticsearch
 

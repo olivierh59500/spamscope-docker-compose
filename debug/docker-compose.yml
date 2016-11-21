@@ -1,0 +1,19 @@
+version: '2'
+
+services:
+  
+  # SpamScope debug
+  spamscope:
+    image: fmantuano/spamscope-debug
+    container_name: spamscope
+    dns:
+        - 8.8.8.8
+        - 8.8.4.4
+    ports:
+        - "8080:8080"
+    volumes:
+        # Mails folder
+        - /mnt/testing/spamscope:/mnt/mails
+
+        # SpamScope configuration
+        - ../spamscope_conf:/etc/spamscope
